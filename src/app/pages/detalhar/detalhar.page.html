@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>detalhar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <form [formGroup]="formEditar" (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label>Habilitar Edição</ion-label>
+      <ion-toggle (ionChange)="alterarEdicao()"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Editar Jogo</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input disabled="{{edicao}}" placeholder = "Nome" formControlName="nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input disabled="{{edicao}}" placeholder="Preço" type="number" formControlName="preco"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input disabled="{{edicao}}" placeholder = "Desenvolvedora" formControlName="dev"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input disabled="{{edicao}}" placeholder = "Gênero" formControlName="genero"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select disabled="{{edicao}}" placeholder="Plataforma" formControlName="plataforma">
+        <ion-select-option value="windows">Windows</ion-select-option>
+        <ion-select-option value="linux">Linux</ion-select-option>
+        <ion-select-option value="macOS">MacOS</ion-select-option>
+        <ion-select-option value="xbox">Xbox</ion-select-option>
+        <ion-select-option value="ps">PlayStation</ion-select-option>
+        <ion-select-option value="switch">Switch</ion-select-option>
+        <ion-select-option value="mobile">Mobile</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-select disabled="{{edicao}}" placeholder="Selecione o estilo" formControlName="estilo">
+        <ion-select-option value="1p_online">Um jogador/Online</ion-select-option>
+        <ion-select-option value="coop_1p">Cooperativo/Um jogador</ion-select-option>
+        <ion-select-option value="online">Somente online</ion-select-option>
+        <ion-select-option value="single">Somente um jogador</ion-select-option>
+        <ion-select-option value="crossp">Multiplataforma</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Data de Lancamento:</ion-label>
+      <ion-datetime-button disabled="{{edicao}}" datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime formControlName="data_lancamento" presentation = "date" max = "2032-08-23" id="datetime"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+    <ion-item>
+      <img src="{{jogo.downloadURL}}"/>
+    </ion-item>
+    <ion-button disabled="{{edicao}}" expand="block" type="submit">Salvar</ion-button>
+    <ion-button disabled="{{edicao}}" color="danger" expand="block" (click)="excluir()">Excluir</ion-button>
+  </form>
+  </ion-list>
+</ion-content>

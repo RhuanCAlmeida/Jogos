@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="deslogar()">Sair</ion-button>
+    <ion-title>
+      Lista de jogos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-list  padding class="listagem">
+    <ion-item-sliding *ngFor = "let item of jogos">
+      <ion-item lines="none" class="itens">
+        <ion-avatar>
+          <img src="{{item.downloadURL}}"/>
+        </ion-avatar> &nbsp; &nbsp;
+        <ion-text color="dark">
+        {{item.nome}}</ion-text></ion-item>
+        <ion-item-options side="end">
+          <ion-item-option (click)="irParaDetalharPage(item)">
+            <ion-icon name="create-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="irParaCadastroPage()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+</ion-content>

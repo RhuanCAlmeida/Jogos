@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastro de Usuário</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <form [formGroup]="formCadastrar" (ngSubmit)="submitForm()">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+      <span *ngIf="isSubmitted && errorControl.email.errors?.required">
+        Email é obrigatório!
+      </span>
+      <span *ngIf="isSubmitted && errorControl.email.errors?.email">
+       Formato de email é inválido!
+      </span>
+      <ion-item>
+        <ion-label position="floating">Senha</ion-label>
+        <ion-input type="password" formControlName="senha"></ion-input>
+      </ion-item>
+      <span *ngIf="isSubmitted && errorControl.senha.errors?.required">
+        Senha é obrigatória!
+      </span>
+      <span *ngIf="isSubmitted && errorControl.senha.errors?.minlength">
+       A senha é de no mínimo 6 caracteres.
+      </span>
+      <ion-item>
+        <ion-label position="floating">Confirmar Senha</ion-label>
+        <ion-input type="password" formControlName="confSenha"></ion-input>
+      </ion-item>
+      <span *ngIf="isSubmitted && errorControl.confSenha.errors?.required">
+       A confirmação da Senha é obrigatória!
+      </span>
+      <span *ngIf="isSubmitted && errorControl.confSenha.errors?.minlength">
+       A confirmação de senha é de no mínimo 6 caracteres.
+      </span>
+      <span *ngIf="isSubmitted && this.formCadastrar.value['senha'] !=
+      this.formCadastrar.value['confSenha']">
+        As senhas não conferem.
+       </span>
+      <ion-button expand="full" color="success" type="submit">
+        Cadastrar
+      </ion-button>
+    </form>
+  </ion-list>
+</ion-content>

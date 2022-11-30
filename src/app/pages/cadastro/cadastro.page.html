@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <form [formGroup]="formCadastrar" (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label>Cadastro</ion-label >
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Nome" formControlName="nome"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="((errorControl.nome.touched || errorControl.nome.dirty) && errorControl.nome.errors)">
+    <span *ngIf="errorControl.nome.errors.required">
+      Nome é obrigatório!!
+    </span>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Desenvolvedora" formControlName="dev"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="((errorControl.dev.touched || errorControl.dev.dirty) && errorControl.dev.errors)">
+    <span *ngIf="errorControl.dev.errors.required">
+      Desenvolvedora é obrigatório!!
+    </span>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Gênero" formControlName="genero"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="((errorControl.genero.touched || errorControl.genero.dirty) && errorControl.genero.errors)">
+    <span *ngIf="errorControl.genero.errors.required">
+      Gênero é obrigatório!!
+    </span>
+    </ion-item>
+    <ion-item>
+      <ion-input type="number" placeholder="Preço" formControlName="preco"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="((errorControl.preco.touched || errorControl.preco.dirty) && errorControl.preco.errors)">
+      <span *ngIf="errorControl.preco.errors?.minlength">
+        Preço precisa ter 2 caracteres!!
+      </span>
+      
+      </ion-item>
+      
+    <ion-item>
+      <ion-select interface="action-sheet" placeholder="Selecione a Plataforma" formControlName= "plataforma">
+      <ion-select-option value="windows">Windows</ion-select-option>
+      <ion-select-option value="linux">Linux</ion-select-option>
+      <ion-select-option value="macOS">MacOS</ion-select-option>
+      <ion-select-option value="xbox">Xbox</ion-select-option>
+      <ion-select-option value="ps">PlayStation</ion-select-option>
+      <ion-select-option value="switch">Switch</ion-select-option>
+      <ion-select-option value="mobile">Mobile</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-select interface="action-sheet" placeholder="Selecione o estilo" formControlName="estilo">
+      <ion-select-option value="1p_online">Um jogador/Online</ion-select-option>
+      <ion-select-option value="coop_1p">Cooperativo/Um jogador</ion-select-option>
+      <ion-select-option value="online">Somente online</ion-select-option>
+      <ion-select-option value="single">Somente um jogador</ion-select-option>
+      <ion-select-option value="crossp">Multiplataforma</ion-select-option>
+    </ion-select>
+  </ion-item>
+    <ion-item>
+      <ion-label>Data de Lancamento</ion-label>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="datetime" formControlName = "data_lancamento" presentation="date" max="2032-08-31"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+    <ion-item>
+      <ion-button size="default" color="success" shape="round">
+        <input type="file" formControlName="imagem"
+        (change)="uploadFile($event.target)"/>
+      </ion-button>
+    </ion-item>
+    <ion-item *ngIf="((errorControl.imagem.touched ||
+    errorControl.imagem.dirty) && errorControl.imagem.errors)">
+      <span *ngIf="errorControl.imagem.errors.required">
+        Imagem de avatar é obrigatória!
+      </span>
+    </ion-item>
+    <ion-button expand="block" type="submit">Cadastrar</ion-button>
+  </form>
+  </ion-list>
+ 
+</ion-content>
